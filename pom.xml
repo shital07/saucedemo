@@ -12,26 +12,80 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.plugin>3.12.1</maven.compiler.plugin>
+        <maven.surefire.plugin>3.0.0-M1</maven.surefire.plugin>
+        <selenium.version>4.13.0</selenium.version>
+        <testng.version>7.8.0</testng.version>
     </properties>
+
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.11.0</version>
+            <version>${selenium.version}</version>
         </dependency>
 
+
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.7.0</version>
+            <version>${testng.version}</version>
+            <scope>test</scope>
         </dependency>
 
 
-
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin}</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <maven.plugin.validation>VERBOSE</maven.plugin.validation>
+                    </systemPropertyVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version> <!-- Use the latest version available -->
+
+                <configuration>
+                    <filesets>
+                        <!-- Delete the folder inside the target directory -->
+                        <fileset>
+                            <directory>target</directory>
+
+                        </fileset>
+
+                        <!-- Delete an additional folder -->
+                        <fileset>
+                            <directory>test-output</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>

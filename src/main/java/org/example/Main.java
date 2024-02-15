@@ -6,7 +6,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import utility.DriverType;
+import utility.BrowserType;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -14,11 +14,11 @@ public class Main {
     public static void main(String[] args) {
 
 
-        WebDriver driver = createDrive(DriverType.FIREFOX);
+        WebDriver driver = createDrive(BrowserType.FIREFOX);
         driver.get("https://www.google.com");
     }
 
-    public static WebDriver createDrive(DriverType driverType) {
+    public static WebDriver createDrive(BrowserType driverType) {
 
         WebDriver driver = null;
 
